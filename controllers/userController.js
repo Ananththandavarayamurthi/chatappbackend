@@ -68,9 +68,8 @@ module.exports.forgotPassword = async (req, res) => {
       const tokenPayload = new Tokens({userId: user._id, token: hashedToken, createdAt: Date.now()});
 
       await tokenPayload.save();
- 
-      // const link = `https://main--pasword-flow.netlify.app/passwordReset?token=${newToken}&id=${user._id}`;
-      const link = `http://localhost:4000/api/auth//passwordReset?token=${newToken}&id=${user._id}`;
+    
+      const link = `https://chatt-96j3.onrender.com/api/auth//passwordReset?token=${newToken}&id=${user._id}`;
 
       await sendEmail(user.email, 'Password Reset Link', {name: user.name, link: link});
       
